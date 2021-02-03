@@ -12,3 +12,6 @@ Launch the game and the mod should be loaded
 
 # More Replication Plugin
 Allows you to exceed the limit of replicating 10 of an item.
+
+# No Advisor Plugin
+Prevents the advisor from interrupting you.
