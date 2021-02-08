@@ -14,7 +14,7 @@ namespace DoubleSmelter
             // Load the required technology to access it
             var preTechSmelterMk2 = LDB.techs.Select(1202);
 
-            // Copy the Protos to a new Storage Mk III building
+            // Copy the Protos to a new Smelter MK II building
             ItemProto smelterMk2 = smelter.Copy();
             RecipeProto smelterMk2r = smelterr.Copy();
 
@@ -30,7 +30,7 @@ namespace DoubleSmelter
             //smelterMk2r.Items = new int[] { 1001 };   // The items required to craft it
             smelterMk2r.ItemCounts = new int[] { 1, 4, 4, 8 };
             //smelterMk2r.ItemCounts = new int[] { 1 };
-            smelterMk2r.Results = new int[] { 10001 };   // The result (Storage Mk III)
+            smelterMk2r.Results = new int[] { 10001 };   // The result (Smelter MK II)
             smelterMk2r.GridIndex = 2701;     // Where the recipe is located on the replicator. Format xyzz where x is the page, y is the row, and zz is the column
             smelterMk2r.preTech = preTechSmelterMk2;    // Set the required technology to be able to access the recipe
             smelterMk2r.SID = smelterMk2r.GridIndex.ToString();
