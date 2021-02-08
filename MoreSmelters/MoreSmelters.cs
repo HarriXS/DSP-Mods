@@ -13,7 +13,6 @@ namespace DoubleSmelter
             SmelterMk3 smelterMk3 = new SmelterMk3();
             LDBTool.PostAddDataAction += smelterMk2.AddSmelterMk2Data;
             LDBTool.PostAddDataAction += smelterMk3.AddSmelterMk3Data;
-            //var ab = AssetBundle.LoadFromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream("MoreStorage.storagemkiii"));    // Load the storagemkiii AssetBundle
             Harmony.CreateAndPatchAll(typeof(MoreSmelters));
         }
     }
