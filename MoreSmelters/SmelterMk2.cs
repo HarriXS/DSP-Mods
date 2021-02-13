@@ -12,9 +12,9 @@ namespace DoubleSmelter
             var smelterr = LDB.recipes.Select(56);
 
             // Load the required technology to access it
-            var preTechSmelterMk2 = LDB.techs.Select(1202);
+            var preTechSmelterMk2 = LDB.techs.Select(505);
 
-            // Copy the Protos to a new Smelter MK II building
+            // Copy the Protos to a new Storage Mk III building
             ItemProto smelterMk2 = smelter.Copy();
             RecipeProto smelterMk2r = smelterr.Copy();
 
@@ -30,8 +30,8 @@ namespace DoubleSmelter
             //smelterMk2r.Items = new int[] { 1001 };   // The items required to craft it
             smelterMk2r.ItemCounts = new int[] { 1, 4, 4, 8 };
             //smelterMk2r.ItemCounts = new int[] { 1 };
-            smelterMk2r.Results = new int[] { 10001 };   // The result (Smelter MK II)
-            smelterMk2r.GridIndex = 2701;     // Where the recipe is located on the replicator. Format xyzz where x is the page, y is the row, and zz is the column
+            smelterMk2r.Results = new int[] { 10001 };   // The result (Storage Mk III)
+            smelterMk2r.GridIndex = 2405;     // Where the recipe is located on the replicator. Format xyzz where x is the page, y is the row, and zz is the column
             smelterMk2r.preTech = preTechSmelterMk2;    // Set the required technology to be able to access the recipe
             smelterMk2r.SID = smelterMk2r.GridIndex.ToString();
             smelterMk2r.sid = smelterMk2r.GridIndex.ToString();
@@ -41,7 +41,7 @@ namespace DoubleSmelter
             smelterMk2.description = "1.5x the speed of a Smelter";
             smelterMk2.ID = 10001;
             smelterMk2.makes = new List<RecipeProto>();
-            smelterMk2.BuildIndex = 10001;
+            smelterMk2.BuildIndex = 508;
             smelterMk2.GridIndex = smelterMk2r.GridIndex;
             smelterMk2.handcraft = smelterMk2r;
             smelterMk2.maincraft = smelterMk2r;
@@ -54,6 +54,10 @@ namespace DoubleSmelter
             smelterMk2.prefabDesc.assemblerRecipeType = ERecipeType.Smelt;
             smelterMk2.prefabDesc.idleEnergyPerTick = 250;      // desired watts / 60
             smelterMk2.prefabDesc.workEnergyPerTick = 10667;    // desired watts / 60
+            smelterMk2.Grade = 2;
+            smelterMk2.Upgrades = new int[] { 2302, 10001, 10002 };
+            smelterMk2.StackSize = 50;
+            smelterMk2.prefabDesc.selectSize = new UnityEngine.Vector3(5, 5, 5);
 
             LDBTool.PostAddProto(ProtoType.Recipe, smelterMk2r);
             LDBTool.PostAddProto(ProtoType.Item, smelterMk2);

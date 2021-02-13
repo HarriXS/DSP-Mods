@@ -14,7 +14,7 @@ namespace DoubleSmelter
             // Load the required technology to access it
             var preTechsmelterMk3 = LDB.techs.Select(1203);
 
-            // Copy the Protos to a new Smelter Mk III building
+            // Copy the Protos to a new Storage Mk III building
             ItemProto smelterMk3 = smelter.Copy();
             RecipeProto smelterMk3r = smelterr.Copy();
 
@@ -26,12 +26,12 @@ namespace DoubleSmelter
             smelterMk3r.name = "Smelter MK. III";
             smelterMk3r.Description = "2x the speed of a Smelter";
             smelterMk3r.description = "2x the speed of a Smelter";
-            smelterMk3r.Items = new int[] { 10001, 1304, 1305, 1202 };   // The items required to craft it
+            smelterMk3r.Items = new int[] { 10001, 1206, 1305, 1202 };   // The items required to craft it
             //smelterMk3r.Items = new int[] { 1001 };
             smelterMk3r.ItemCounts = new int[] { 1, 8, 2, 20 };
             //smelterMk3r.ItemCounts = new int[] { 1 };
-            smelterMk3r.Results = new int[] { 10002 };   // The result (Smelter Mk III)
-            smelterMk3r.GridIndex = 2702;     // Where the recipe is located on the replicator. Format xyzz where x is the page, y is the row, and zz is the column
+            smelterMk3r.Results = new int[] { 10002 };   // The result (Storage Mk III)
+            smelterMk3r.GridIndex = 2406;     // Where the recipe is located on the replicator. Format xyzz where x is the page, y is the row, and zz is the column
             smelterMk3r.preTech = preTechsmelterMk3;    // Set the required technology to be able to access the recipe
             smelterMk3r.SID = smelterMk3r.GridIndex.ToString();
             smelterMk3r.sid = smelterMk3r.GridIndex.ToString();
@@ -53,7 +53,10 @@ namespace DoubleSmelter
             smelterMk3.prefabDesc.assemblerSpeed = 20000;
             smelterMk3.prefabDesc.assemblerRecipeType = ERecipeType.Smelt;
             smelterMk3.prefabDesc.idleEnergyPerTick = 300;    // desired watts / 60
-            smelterMk3.prefabDesc.workEnergyPerTick = 17334;    // desired watts / 60
+            smelterMk3.prefabDesc.workEnergyPerTick = 15000;    // desired watts / 60
+            smelterMk3.Grade = 3;
+            smelterMk3.Upgrades = new int[] { 2302, 10001, 10002 };
+            smelterMk3.StackSize = 50;
 
             LDBTool.PostAddProto(ProtoType.Recipe, smelterMk3r);
             LDBTool.PostAddProto(ProtoType.Item, smelterMk3);
