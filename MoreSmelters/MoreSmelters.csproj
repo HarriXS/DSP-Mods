@@ -34,8 +34,8 @@
     <Reference Include="0Harmony">
       <HintPath>C:\Users\Harrison Everett\OneDrive\Documents\Programming\DSP\Libs\0Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp.refstub">
-      <HintPath>..\..\Libs\Assembly-CSharp.refstub.dll</HintPath>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\Steam\steamapps\common\Dyson Sphere Program\DSPGAME_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx">
       <HintPath>C:\Users\Harrison Everett\OneDrive\Documents\Programming\DSP\Libs\BepInEx.dll</HintPath>
@@ -46,8 +46,9 @@
     <Reference Include="BepInEx.Preloader">
       <HintPath>C:\Users\Harrison Everett\OneDrive\Documents\Programming\DSP\Libs\BepInEx.Preloader.dll</HintPath>
     </Reference>
-    <Reference Include="LDBTool">
-      <HintPath>C:\Users\Harrison Everett\OneDrive\Documents\Programming\DSP\Libs\LDBTool.dll</HintPath>
+    <Reference Include="LDBTool, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\LDBTool.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>C:\Users\Harrison Everett\OneDrive\Documents\Programming\DSP\Libs\Mono.Cecil.dll</HintPath>
@@ -105,10 +106,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DoubleSmelter.cs" />
     <Compile Include="MoreSmelters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SmelterMk1.cs" />
     <Compile Include="SmelterMk3.cs" />
     <Compile Include="SmelterMk2.cs" />
+    <Compile Include="SteelFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
