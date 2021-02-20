@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System.Reflection;
+using System.Collections.Generic;
 using BepInEx;
 using HarmonyLib;
 using UnityEngine.UI;
 using UnityEngine;
+using Mono.Cecil.Cil;
+using MonoMod.Cil;
+using MonoMod.RuntimeDetour;
 
 namespace DSPModTesting
 {
@@ -13,6 +17,7 @@ namespace DSPModTesting
         {
             var harmony = new Harmony("org.bepinex.plugins.morereplication");
             Harmony.CreateAndPatchAll(typeof(Patch));
+			new ILHook(typeof(UIReplicatorWindow).GetMethod("OnOkButtonClick", BindingFlags.NonPublic | BindingFlags.Instance), new ILContext.Manipulator(Patch.OkButtonClickIL));
         }
 
         [HarmonyPatch(typeof(UIReplicatorWindow))]
@@ -66,53 +71,34 @@ namespace DSPModTesting
 				return false;
 			}
 
-			[HarmonyPrefix]
-            [HarmonyPatch("OnOkButtonClick")]
-            public static bool OnOkButtonClick(UIReplicatorWindow __instance, ref RecipeProto ___selectedRecipe, ref Dictionary<int, int> ___multipliers, ref MechaForge ___mechaForge)
-            {
-				if (___selectedRecipe != null)
-				{
-					if (!___selectedRecipe.Handcraft)
-					{
-						UIRealtimeTip.Popup("该配方".Translate() + ___selectedRecipe.madeFromString + "生产".Translate(), true, 0);
-						return false;
-					}
-					int id = ___selectedRecipe.ID;
-					if (!GameMain.history.RecipeUnlocked(id))
-					{
-						UIRealtimeTip.Popup("配方未解锁".Translate(), true, 0);
-						return false;
-					}
-					int num = 1;
-					if (___multipliers.ContainsKey(id))
-					{
-						num = ___multipliers[id];
-					}
-					if (num < 1)
-					{
-						num = 1;
-					}
-					int num2 = ___mechaForge.PredictTaskCount(___selectedRecipe.ID, 1000000);
-					if (num > num2)
-					{
-						num = num2;
-					}
-					if (num == 0)
-					{
-						UIRealtimeTip.Popup("材料不足".Translate(), true, 0);
-						return false;
-					}
-					if (___mechaForge.AddTask(id, num) == null)
-					{
-						UIRealtimeTip.Popup("材料不足".Translate(), true, 0);
-					}
-					else
-					{
-						GameMain.history.RegFeatureKey(1000104);
-					}
-				}
+			public static void OkButtonClickIL(ILContext il)
+			{
+				ILCursor c = new ILCursor(il);
 
-				return false;
+				ILLabel placeToJump = null;
+
+				c.GotoNext(MoveType.Before,
+					x => x.MatchLdloc(1),
+					x => x.MatchLdcI4(10),
+					x => x.MatchBle(out placeToJump),
+					x => x.MatchLdcI4(10),
+					x => x.MatchStloc(1)
+				);
+
+				var labels = c.IncomingLabels;
+
+				c.Emit(OpCodes.Br, placeToJump);
+
+				foreach (var label in labels)
+					label.Target = c.Prev;
+
+				c.GotoNext(MoveType.Before,
+					x => x.MatchLdcI4(99),
+					x => x.MatchCallOrCallvirt(typeof(MechaForge).GetMethod("PredictTaskCount"))
+				);
+
+				c.Next.OpCode = OpCodes.Ldc_I4;
+				c.Next.Operand = int.MaxValue - 1;
 			}
         }
     }
