@@ -32,7 +32,7 @@ namespace DoubleSmelter
             mk1Name.ID = 10500;
             mk1Name.Name = "Smelter MK. I";
             mk1Name.name = "Smelter MK. I";
-            mk1Name.ZHCN = "冶炼厂MK。 I";
+            mk1Name.ZHCN = "冶炼厂MK. I";
             mk1Name.ENUS = "Smelter MK. I";
             mk1Name.FRFR = "Smelter MK. I";
 
@@ -40,7 +40,7 @@ namespace DoubleSmelter
             mk2Name.ID = 10501;
             mk2Name.Name = "Smelter MK. II";
             mk2Name.name = "Smelter MK. II";
-            mk2Name.ZHCN = "冶炼厂MK。 II";
+            mk2Name.ZHCN = "冶炼厂MK. II";
             mk2Name.ENUS = "Smelter MK. II";
             mk2Name.FRFR = "Smelter MK. II";
 
@@ -48,7 +48,7 @@ namespace DoubleSmelter
             mk3Name.ID = 10503;
             mk3Name.Name = "Smelter MK. III";
             mk3Name.name = "Smelter MK. III";
-            mk3Name.ZHCN = "冶炼厂MK。 III";
+            mk3Name.ZHCN = "冶炼厂MK. III";
             mk3Name.ENUS = "Smelter MK. III";
             mk3Name.FRFR = "Smelter MK. III";
 
